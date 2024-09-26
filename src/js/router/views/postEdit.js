@@ -1,8 +1,10 @@
 import { readPost } from "../../api/post/read";
 import { authGuard } from "../../utilities/authGuard";
 import { onUpdatePost } from "../../ui/post/update";
+import navbar from "../../components/navbar";
 
 authGuard();
+navbar();
 const id = new URLSearchParams(window.location.search).get("id");
 const post = await readPost(id);
 if (post) {
