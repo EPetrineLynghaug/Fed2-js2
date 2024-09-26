@@ -1,6 +1,6 @@
 import { readPost, readPosts } from "../../api/post/read";
 import { authGuard } from "../../utilities/authGuard";
-import { getUserInfo } from "../../utilities/userinfo";
+import { getUserInfo } from "../../utilities/userInfo";
 import createPostCards from "../../utilities/post-card";
 
 authGuard();
