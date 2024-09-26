@@ -1,1 +1,0 @@
-import{r as o}from"./read-83GwmSIF.js";import{a as e}from"./authGuard-C2GFzsuy.js";import{g as r}from"./app-BzN5_U8S.js";import{c as s}from"./post-card-CzY-sSk7.js";import"./headers-B4k_fb22.js";e();const t=r(),a=t.name;document.querySelector(".welcomeUser").innerHTML=a||"Annonymus";const n=await o(),m=s(n,!1);document.querySelector(".posts").append(m);
