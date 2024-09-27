@@ -1,4 +1,3 @@
-// @ts-check
 import { headers } from "../headers";
 import { API_AUTH_LOGIN } from "./../../api/constants";
 /**
@@ -9,8 +8,6 @@ import { API_AUTH_LOGIN } from "./../../api/constants";
  * @returns {Promise} result
  */
 export async function login({ email, password }) {
-  // reqheaders er en ny variabel om du trenger å legge til nye verdier (append).
-  // const reqHeaders = headers();
   try {
     const reqBody = {
       email: email,
