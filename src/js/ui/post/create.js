@@ -1,5 +1,14 @@
 import { createPost } from "../../api/post/create";
 
+/**
+ * @function onCreatePost
+ * @description Handles the form submission for creating a new post.
+ * Validates the input fields and ensures that the media URL, if provided, is a valid image URL.
+ * If the post is created successfully, the user is redirected to the newly created post's page.
+ *
+ * @param {Event} event - The event object representing the form submission event.
+ * @returns {Promise<void>} This function does not return a value.
+ */
 export async function onCreatePost(event) {
   event.preventDefault();
 

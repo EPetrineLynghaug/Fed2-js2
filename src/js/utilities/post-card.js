@@ -1,5 +1,19 @@
 import { onDeletePost } from "../ui/post/delete";
 
+/**
+ * @function createPostCards
+ * @description Generates a container of post cards based on the provided user posts.
+ * Each post card includes details like the author's name, title, body, tags,
+ * creation date, and media. It also provides buttons for reading, editing,
+ * and deleting posts based on the user's authorization status.
+ *
+ * @param {Array<object>} userPosts - An array of post objects, where each post
+ *                                     contains details such as title, body,
+ *                                     author, tags, created date, and media.
+ * @param {boolean} isAuthorized - A flag indicating whether the user has
+ *                                 authorization to edit or delete posts.
+ * @returns {HTMLElement} The container element holding all the generated post cards.
+ */
 export default function createPostCards(userPosts, isAuthorized) {
   const articlesContainer = document.createElement("div");
   articlesContainer.className = "articles-container";

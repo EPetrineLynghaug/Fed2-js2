@@ -1,5 +1,12 @@
 import { API_SOCIAL_POSTS } from "../constants";
 import { headers } from "../headers";
+
+/**
+ * @function readPost
+ * @param {string|number} id - The ID of the post to be fetched.
+ * @returns {Promise<object>} A promise that resolves to the post object or the complete result if the post data is not available.
+ * @throws {Error} Throws an error if the fetch fails or if the response is not ok.
+ */
 export async function readPost(id) {
   try {
     const response = await fetch(
@@ -20,7 +27,14 @@ export async function readPost(id) {
     );
   }
 }
-
+/**
+ * @function readPosts
+ * @param {number} [limit=12] - The number of posts to fetch.
+ * @param {number} [page=1] - The page number to fetch.
+ * @param {string} [tag] - Optional tag to filter the posts.
+ * @returns {Promise<Array<object>>} A promise that resolves to an array of post objects.
+ * @throws {Error} Throws an error if the fetch fails or if the response is not ok.
+ */
 export async function readPosts(limit = 12, page = 1, tag) {
   try {
     const response = await fetch(
@@ -42,6 +56,15 @@ export async function readPosts(limit = 12, page = 1, tag) {
   }
 }
 
+/**
+ * @function readPostsByUser
+ * @param {string} username - The username of the user whose posts are to be fetched.
+ * @param {number} [limit=12] - The number of posts to fetch.
+ * @param {number} [page=1] - The page number to fetch.
+ * @param {string} [tag] - Optional tag to filter the posts.
+ * @returns {Promise<Array<object>>} A promise that resolves to an array of post objects for the specified user.
+ * @throws {Error} Throws an error if the fetch fails or if the response is not ok.
+ */
 export async function readPostsByUser(username, limit = 12, page = 1, tag) {
   try {
     const response = await fetch(

@@ -1,5 +1,18 @@
 import { onLogout } from "../ui/auth/logout";
 import { getUserInfo } from "../utilities/userInfo";
+/**
+ * @function navbar
+ * @description Creates and renders a navigation bar based on the user's authentication status.
+ * - If a token exists in localStorage, it displays menu items for authenticated users:
+ *   - Home
+ *   - New Post
+ *   - My Profile
+ * - If no token is found, it displays menu items for unauthenticated users:
+ *   - Login
+ *   - Register
+ * The navbar includes a Logout button for authenticated users.
+ * @returns {void} This function does not return a value.
+ */
 let meny;
 if (localStorage.token) {
   const user = getUserInfo();

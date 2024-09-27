@@ -1,5 +1,13 @@
 import { readPost } from "../../api/post/read";
-
+/**
+ * @function onSinglePost
+ * @description Fetches a single post by its ID and renders it in the DOM.
+ * If the post is not found, it throws an error. It also includes a back button
+ * to navigate to the home page.
+ *
+ * @param {string} id - The ID of the post to fetch and display.
+ * @returns {Promise<void>} This function does not return a value.
+ */
 export async function onSinglePost(id) {
   try {
     const post = await readPost(id);

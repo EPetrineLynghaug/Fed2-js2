@@ -1,5 +1,16 @@
 import { updatePost } from "../../api/post/update";
 
+/**
+ * @function onUpdatePost
+ * @description Handles the post update event, preventing the default form submission.
+ * It collects the updated post data from the form, constructs a request body,
+ * and sends it to update the post with the given ID.
+ * If the update is successful, the user is redirected to the updated post's page.
+ *
+ * @param {Event} event - The event triggered by the form submission.
+ * @param {string} id - The ID of the post to be updated.
+ * @returns {Promise<void>} This function does not return a value.
+ */
 export async function onUpdatePost(event, id) {
   event.preventDefault();
 

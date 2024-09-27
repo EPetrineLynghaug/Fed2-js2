@@ -3,8 +3,12 @@ import { API_KEY } from "./constants";
 
 /**
  * @function headers
+ * @description Creates and returns a Headers object with necessary HTTP headers for API requests.
+ * @returns {Headers} A Headers object with the following headers:
+ * - `Content-Type`: application/json
+ * - `X-Noroff-API-Key`: The API key if it is available.
+ * - `Authorization`: Bearer token from local storage if it exists.
  */
-//  * @returns {Headers} headers
 export function headers() {
   const headers = new Headers();
 

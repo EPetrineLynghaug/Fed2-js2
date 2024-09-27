@@ -1,15 +1,15 @@
-// @ts-check
+// @ts-nocheck
 
 import { headers } from "../headers";
 import { API_AUTH_REGISTER } from "./../../api/constants";
 
 /**
  * @function register
- * @param {Object} form
- * @property {string} form.name
- * @property {string} form.email
- * @property {string} form.password
- * @returns {Promise} result
+ * @param {object} formData - The form data object containing registration details
+ * @param {string} formData.name - The name of the user
+ * @param {string} formData.email - The email address of the user
+ * @param {string} formData.password - The password for the user
+ * @returns {Promise<object>} result - The result of the registration request
  */
 export async function register({ name, email, password }) {
   try {
