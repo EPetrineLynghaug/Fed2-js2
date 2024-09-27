@@ -2,6 +2,7 @@ import { API_SOCIAL_POSTS } from "../../api/constants";
 import { headers } from "../../api/headers";
 
 /**
+ * @async
  * @function updatePost
  * @param {string|number} id - The ID of the post to be updated.
  * @param {object} reqBody - The request body containing the updated post details.

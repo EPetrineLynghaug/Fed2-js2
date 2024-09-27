@@ -9,7 +9,14 @@ navbar();
 const userInfo = getUserInfo();
 const nameUrl = new URLSearchParams(window.location.search);
 const name = nameUrl.get("name");
-
+/**
+ * Displays the user profile for a given username by fetching the profile data,
+ * creating DOM elements to display the user's name, avatar, and posts.
+ * @async
+ * @function displayUserProfile
+ * @param {string} username - The username of the user whose profile is to be displayed.
+ * @returns {Promise<void>} - A promise that resolves when the profile is displayed.
+ */
 async function displayUserProfile(username) {
   const userProfile = await readProfile(username);
 

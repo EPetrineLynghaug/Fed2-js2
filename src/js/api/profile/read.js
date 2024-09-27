@@ -2,6 +2,7 @@ import { API_SOCIAL_PROFILES } from "../../api/constants";
 import { headers } from "../../api/headers";
 
 /**
+ * @async
  * @function readProfile
  * @param {string} username - The username of the profile to be fetched.
  * @returns {Promise<object>} A promise that resolves to the user profile object.
@@ -37,6 +38,7 @@ export async function readProfile(username) {
 }
 
 /**
+ * @async
  * @function readProfiles
  * @param {number} limit - The maximum number of profiles to fetch.
  * @param {number} page - The page number for pagination.

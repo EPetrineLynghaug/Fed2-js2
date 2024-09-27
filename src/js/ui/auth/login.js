@@ -3,8 +3,11 @@ import { login } from "../../api/auth/login";
 import { emailCheck, pswCheck } from "../../utilities/regex";
 
 /**
+ * @async
  * @function onLogin
- * @param {SubmitEvent} event
+ * @param {SubmitEvent} event - The submit event triggered by the login form.
+ * @returns {Promise<void>} A promise that resolves when the login process is complete.
+ * @throws {Error} Throws an error if the email or password is invalid or if the login request fails.
  */
 export async function onLogin(event) {
   event.preventDefault();

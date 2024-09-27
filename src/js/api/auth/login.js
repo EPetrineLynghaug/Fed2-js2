@@ -1,6 +1,7 @@
 import { headers } from "../headers";
 import { API_AUTH_LOGIN } from "./../../api/constants";
 /**
+ * @async
  * @function login
  * @param {Object "form"} - The form object
  * @property {string "form.name"}  - The email of the user

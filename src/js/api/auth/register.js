@@ -1,9 +1,8 @@
-// @ts-nocheck
-
 import { headers } from "../headers";
 import { API_AUTH_REGISTER } from "./../../api/constants";
 
 /**
+ * @async
  * @function register
  * @param {object} formData - The form data object containing registration details
  * @param {string} formData.name - The name of the user

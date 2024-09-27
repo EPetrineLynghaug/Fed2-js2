@@ -2,6 +2,7 @@ import { API_SOCIAL_POSTS } from "../constants";
 import { headers } from "../headers";
 
 /**
+ * @async
  * @function readPost
  * @param {string|number} id - The ID of the post to be fetched.
  * @returns {Promise<object>} A promise that resolves to the post object or the complete result if the post data is not available.
@@ -28,6 +29,7 @@ export async function readPost(id) {
   }
 }
 /**
+ * @async
  * @function readPosts
  * @param {number} [limit=12] - The number of posts to fetch.
  * @param {number} [page=1] - The page number to fetch.
@@ -57,6 +59,7 @@ export async function readPosts(limit = 12, page = 1, tag) {
 }
 
 /**
+ * @async
  * @function readPostsByUser
  * @param {string} username - The username of the user whose posts are to be fetched.
  * @param {number} [limit=12] - The number of posts to fetch.
