@@ -19,9 +19,18 @@ export async function readProfile(username) {
     if (!response.ok) {
       throw new Error(`Response Status: ${response.status}`);
     }
+
     const result = await response.json();
-    console.log(result);
-    return result.data;
+    const profileData = result.data;
+
+    if (profileData.posts && profileData.posts.length > 0) {
+      profileData.posts.sort(
+        (a, b) => new Date(b.created) - new Date(a.created)
+      );
+    }
+
+    console.log(profileData);
+    return profileData; // Return sorted data
   } catch (error) {
     console.error("Error reading profile:", error);
   }
