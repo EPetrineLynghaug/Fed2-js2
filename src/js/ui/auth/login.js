@@ -23,8 +23,6 @@ export async function onLogin(event) {
   const data = await login({ email, password });
   if (!data) return;
 
-  console.log(data);
-
   const user = {
     name: data.name,
     email: data.email,

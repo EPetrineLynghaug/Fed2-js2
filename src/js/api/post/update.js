@@ -27,7 +27,6 @@ export async function updatePost(id, reqBody) {
     }
 
     const result = await response.json();
-    console.log("Post updated:", result);
 
     return result.data;
   } catch (error) {

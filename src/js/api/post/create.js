@@ -18,7 +18,6 @@ export async function createPost(reqBody) {
       body: JSON.stringify(reqBody),
     });
 
-    console.log(response);
     if (!response.ok) {
       throw new Error(`Response Status: ${response.status}`);
     }

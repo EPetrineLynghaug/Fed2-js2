@@ -40,7 +40,7 @@ export async function readPost(id) {
 export async function readPosts(limit = 12, page = 1, tag) {
   try {
     const response = await fetch(
-      `${API_SOCIAL_POSTS}?limit=12&page=1&_author=true&_reactions=true&_comments=true`,
+      `${API_SOCIAL_POSTS}?limit=${limit}&page=${page}&_author=true&_reactions=true&_comments=true`,
       {
         method: "GET",
         headers: headers(),
@@ -71,7 +71,7 @@ export async function readPosts(limit = 12, page = 1, tag) {
 export async function readPostsByUser(username, limit = 12, page = 1, tag) {
   try {
     const response = await fetch(
-      `${API_SOCIAL_POSTS}?limit=12&page=1&_author=true&_reactions=true&_comments=true`,
+      `${API_SOCIAL_POSTS}?limit=${limit}&page=${page}&_author=true&_reactions=true&_comments=true`,
       {
         method: "GET",
         headers: headers(),

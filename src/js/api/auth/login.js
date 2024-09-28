@@ -21,7 +21,6 @@ export async function login({ email, password }) {
       body: JSON.stringify(reqBody),
     });
 
-    console.log(response);
     if (!response.ok) {
       throw new Error(`Response Status: ${response.status}`);
     }

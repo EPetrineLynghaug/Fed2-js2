@@ -30,7 +30,6 @@ export async function readProfile(username) {
       );
     }
 
-    console.log(profileData);
     return profileData; // Return sorted data
   } catch (error) {
     console.error("Error reading profile:", error);
@@ -58,7 +57,7 @@ export async function readProfiles(limit, page) {
       throw new Error(`Response Status: ${response.status}`);
     }
     const result = await response.json();
-    console.log(result);
+
     return result.data;
   } catch (error) {
     console.error("Error reading profiles:", error);

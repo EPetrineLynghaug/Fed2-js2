@@ -18,8 +18,6 @@ export async function onDeletePost(postElement, postId) {
     const response = await deletePost(postId);
 
     if (response) {
-      console.log(`Post with ID ${postId} was deleted successfully`);
-
       if (postElement) postElement.remove();
 
       alert("Post deleted successfully");
