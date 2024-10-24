@@ -4,6 +4,8 @@
 
 This project leverages API functionality to create a prototype for a social media application (SOME). The objective was to develop a working prototype that includes essential features such as user registration, login, creating posts, editing posts, deleting posts, and retrieving posts—all accomplished without the use of frameworks or UI libraries. The project was completed over the course of one week.
 
+You can try this prototype by creating a user with an email address ending in either @stud.noroff.no or @noroff.no
+
 ## Key Features of the Prototype
 <details>
   <summary><strong>Click to read more</strong></summary>
