@@ -29,6 +29,11 @@ export async function login({ email, password }) {
 
     return result.data;
   } catch (error) {
-    console.error(error.message);
+    if (error.name === "TypeError") {
+      console.error("Network error or invalid JSON:", error.message);
+    } else {
+      console.error("Login failed:", error.message);
+    }
+    throw error;
   }
 }

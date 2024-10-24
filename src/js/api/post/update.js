@@ -30,6 +30,16 @@ export async function updatePost(id, reqBody) {
 
     return result.data;
   } catch (error) {
-    console.error("Error editing post:", error);
+    if (error.name === "TypeError") {
+      console.error("Network error or request failed:", error.message);
+    } else if (error.message.includes("Response Status")) {
+      console.error(`Failed to update post (ID: ${id}):`, error.message);
+    } else {
+      console.error(
+        "An unexpected error occurred while updating the post:",
+        error.message
+      );
+    }
+    throw error;
   }
 }

@@ -22,6 +22,16 @@ export async function deletePost(id) {
     }
     return false;
   } catch (error) {
-    console.error("Error deleting post:", error);
+    if (error.name === "TypeError") {
+      console.error("Network error or request failed:", error.message);
+    } else if (error.message.includes("Response Status")) {
+      console.error(`Failed to delete post (ID: ${id}):`, error.message);
+    } else {
+      console.error(
+        "An unexpected error occurred while deleting the post:",
+        error.message
+      );
+    }
+    throw error;
   }
 }

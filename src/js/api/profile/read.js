@@ -32,7 +32,23 @@ export async function readProfile(username) {
 
     return profileData; // Return sorted data
   } catch (error) {
-    console.error("Error reading profile:", error);
+    if (error.name === "TypeError") {
+      console.error(
+        "Network error or request failed while reading profile:",
+        error.message
+      );
+    } else if (error.message.includes("Response Status")) {
+      console.error(
+        `Failed to read profile for user '${username}':`,
+        error.message
+      );
+    } else {
+      console.error(
+        "An unexpected error occurred while reading profile:",
+        error.message
+      );
+    }
+    throw error;
   }
 }
 
@@ -60,6 +76,22 @@ export async function readProfiles(limit, page) {
 
     return result.data;
   } catch (error) {
-    console.error("Error reading profiles:", error);
+    if (error.name === "TypeError") {
+      console.error(
+        "Network error or request failed while reading profiles:",
+        error.message
+      );
+    } else if (error.message.includes("Response Status")) {
+      console.error(
+        `Failed to read profiles (Limit: ${limit}, Page: ${page}):`,
+        error.message
+      );
+    } else {
+      console.error(
+        "An unexpected error occurred while reading profiles:",
+        error.message
+      );
+    }
+    throw error;
   }
 }

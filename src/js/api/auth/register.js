@@ -27,6 +27,11 @@ export async function register({ name, email, password }) {
     const result = await response.json();
     return result.data;
   } catch (error) {
-    console.error(error.message);
+    if (error.name === "TypeError") {
+      console.error("Network error or invalid JSON:", error.message);
+    } else {
+      console.error("Registration failed:", error.message);
+    }
+    throw error;
   }
 }

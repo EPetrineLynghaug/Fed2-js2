@@ -26,6 +26,13 @@ export async function createPost(reqBody) {
 
     return result.data;
   } catch (error) {
-    console.error(error.message);
+    if (error.name === "TypeError") {
+      console.error("Network error or invalid JSON:", error.message);
+    } else if (error.message.includes("Response Status")) {
+      console.error("Failed to create post:", error.message);
+    } else {
+      console.error("An unexpected error occurred:", error.message);
+    }
+    throw error;
   }
 }

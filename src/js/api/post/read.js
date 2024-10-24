@@ -85,6 +85,16 @@ export async function readPostsByUser(username, limit = 12, page = 1, tag) {
 
     return result.data;
   } catch (error) {
-    console.error("Error reading posts:", error);
+    if (error.name === "TypeError") {
+      console.error("Network error or request failed:", error.message);
+    } else if (error.message.includes("Response Status")) {
+      console.error("Failed to read posts:", error.message);
+    } else {
+      console.error(
+        "An unexpected error occurred while reading posts:",
+        error.message
+      );
+    }
+    throw error;
   }
 }
