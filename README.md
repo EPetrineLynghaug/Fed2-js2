@@ -24,40 +24,47 @@ To get started with this project, follow these steps:
    ```bash
    git clone https://github.com/EPetrineLynghaug/Fed2-js2.git
    ```
-2. **Navigate to the Project Directory:**
-Change into the project directory by running:  
-command:
-   ```bash
-    cd Fed2-js2
-  ```
 
-3. **Install Dependencies:**
+2. **Navigate to the Project Directory:**
+   Change into the project directory by running:
+   
+  command:
+```bash
+npm install
+```
+
+3. **Install Dependencies:**  
 Install the necessary dependencies with:
+
 command:
-   ```bash
-    npm install
-  ```
+```bash
+npm install
+```
+
 
 4. **Run the Development Server:**
-Start the development server using:  
+Start the development server using:
+
 command:
-   ```bash
-    npm run dev
-  ```
+```bash
+npm run dev
+```
 
 5. **Build for Production:**
 When you are ready to deploy the project, you can build it for production with:  
-  command:
-   ```bash
-    npm run build
-  ```
+
+command:
+```bash
+npm run build
+```
 
 6.	Preview the Production Build:
 To preview the production build locally, run:
+
 command:
-   ```bash
-    npm run preview
-  ```
+ ```bash
+npm run preview
+```
 
 ## Planning
 <details>
