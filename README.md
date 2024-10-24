@@ -36,14 +36,14 @@ Install the necessary dependencies with:
 command:
    ```bash
     npm install
-  ```
+   ```
 
 4. **Run the Development Server:**
 Start the development server using:  
 command:
    ```bash
     npm run dev
-  ```
+   ```
 
 5. **Build for Production:**
 When you are ready to deploy the project, you can build it for production with:  
@@ -57,7 +57,7 @@ To preview the production build locally, run:
 command:
    ```bash
   npm run preview
-  ```
+ ```
 
 ## Planning
 <details>
