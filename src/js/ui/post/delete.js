@@ -22,9 +22,12 @@ export async function onDeletePost(postElement, postId) {
 
       alert("Post deleted successfully");
     } else {
-      console.error("Failed to delete post: No response from API");
+      throw new Error("No response received from the API");
     }
   } catch (error) {
-    console.error("Failed to delete post:", error);
+    console.error("Failed to delete post:", error.message);
+    alert(
+      `There was an error deleting the post: ${error.message}. Please try again later.`
+    );
   }
 }
