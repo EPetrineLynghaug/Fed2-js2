@@ -41,12 +41,16 @@ function pswCheck(password) {
  * @returns {boolean} - Returns true if the name is valid; otherwise, false.
  */
 function namecheck(name) {
-  const nameRegex = /^[a-zA-Z\_]+$/;
+  const nameRegex = /^[a-zA-Z0-9\W_]+$/;
   let nameMatch = nameRegex.test(name);
-  if (!nameMatch) {
-    alert("Navn ikke gyldig,kan bare inneholde små/store bokstaver a-Z og _");
+
+  if (name.length === 0 || !nameMatch) {
+    alert(
+      "Navn ikke gyldig. Kan inneholde bokstaver, tall, understrek og spesialtegn, men kan ikke være tom."
+    );
     return false;
   }
+
   return true;
 }
 

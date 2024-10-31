@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Noroff FED2 JS2 CA</title>
+    <script type="module" crossorigin src="../../assets/app-P1dcDpKz.js"></script>
+    <link rel="stylesheet" crossorigin href="../../assets/app-HhQAx_eN.css">
+  </head>
+
+  <body>
+    <h1>Edit Post</h1>
+    <form name="editPost">
+      <div>
+        <label for="title">Title</label>
+        <input id="title" type="text" name="title" required maxlength="20" />
+      </div>
+
+      <div>
+        <label for="body">Body</label>
+        <textarea id="body" name="body" maxlength="200"></textarea>
+      </div>
+
+      <div>
+        <label for="tags">Tags</label>
+        <input id="tags" type="text" name="tags" maxlength="20" />
+      </div>
+
+      <div>
+        <label for="media">Image URL</label>
+        <input
+          id="media"
+          type="text"
+          name="media"
+          maxlength="255"
+          placeholder="Enter image URL"
+        />
+      </div>
+      <button>Update Post</button>
+    </form>
+  </body>
+</html>
