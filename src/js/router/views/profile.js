@@ -3,6 +3,7 @@ import { getUserInfo } from "../../utilities/userInfo";
 import { readProfile } from "../../api/profile/read";
 import createPostCards from "../../utilities/post-card";
 import navbar from "../../components/navbar";
+
 authGuard();
 navbar();
 

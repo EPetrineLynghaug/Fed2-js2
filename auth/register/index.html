@@ -2,33 +2,69 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Noroff FED2 JS2 CA</title>
+    <link href="/src/css/output.css" rel="stylesheet" />
+    >
     <script type="module" src="/src/app.js"></script>
   </head>
 
-  <body>
-    <h1>Register</h1>
+  <body
+    class="bg-backgroundDark text-textPrimary flex items-center justify-center h-screen"
+  >
+    <div class="bg-backgroundCard p-8 rounded-lg shadow-lg w-96">
+      <h1 class="text-2xl font-bold mb-4 text-center">Register</h1>
 
-    <form name="register">
-      <div>
-        <label for="name">Name</label>
-        <input id="name" type="text" name="name" required maxlength="20" />
-      </div>
+      <form name="register">
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-1" for="name">Name</label>
+          <input
+            class="border border-gray-300 rounded-md p-2 w-full"
+            id="name"
+            type="text"
+            name="name"
+            required
+            maxlength="20"
+          />
+        </div>
 
-      <div>
-        <label for="email">Email</label>
-        <input id="email" type="email" name="email" required />
-      </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-1" for="email"
+            >Email</label
+          >
+          <input
+            class="border border-gray-300 rounded-md p-2 w-full"
+            id="email"
+            type="email"
+            name="email"
+            required
+          />
+        </div>
 
-      <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" required />
-      </div>
+        <div class="mb-4">
+          <label class="block text-sm font-medium mb-1" for="password"
+            >Password</label
+          >
+          <input
+            class="border border-gray-300 rounded-md p-2 w-full"
+            type="password"
+            name="password"
+            id="password"
+            required
+          />
+        </div>
 
-      <a href="/auth/login/">Login</a>
-      <button>Register</button>
-    </form>
+        <div class="flex justify-between mb-4">
+          <a class="text-linkColor hover:underline" href="/auth/login/"
+            >Login</a
+          >
+          <button
+            class="bg-successTeal text-white font-semibold px-4 py-2 rounded hover:bg-teal-600"
+          >
+            Register
+          </button>
+        </div>
+      </form>
+    </div>
   </body>
 </html>
