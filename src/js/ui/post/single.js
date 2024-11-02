@@ -26,34 +26,34 @@ export async function onSinglePost(id) {
       "m-4",
       "max-w-2xl",
       "mx-auto"
-    ); // Card styles
+    );
 
     const author = document.createElement("p");
     author.innerText = post.author.name;
-    author.classList.add("text-textPrimary", "font-medium", "mb-2"); // Author styles
+    author.classList.add("text-textPrimary", "font-medium", "mb-2");
     postContainer.appendChild(author);
 
     const title = document.createElement("h1");
     title.innerText = post.title || "No title available";
-    title.classList.add("text-2xl", "font-bold", "text-textPrimary", "mb-2"); // Title styles
+    title.classList.add("text-2xl", "font-bold", "text-textPrimary", "mb-2");
     postContainer.appendChild(title);
 
     const body = document.createElement("p");
     body.innerText = post.body || "No content available";
-    body.classList.add("text-textSecondary", "mb-2"); // Body styles
+    body.classList.add("text-textSecondary", "mb-2");
     postContainer.appendChild(body);
 
     if (post.media && post.media.url) {
       const img = document.createElement("img");
       img.src = post.media.url;
       img.alt = post.media.alt || "Post image";
-      img.classList.add("w-full", "h-auto", "mt-4", "rounded-lg"); // Image styles
+      img.classList.add("w-full", "h-auto", "mt-4", "rounded-lg");
       postContainer.appendChild(img);
     }
 
     const tags = document.createElement("p");
     tags.innerText = post.tags ? post.tags.join(", ") : "No tags";
-    tags.classList.add("text-xs", "text-warmGray", "mt-2"); // Tags styles
+    tags.classList.add("text-xs", "text-warmGray", "mt-2");
     postContainer.appendChild(tags);
 
     const backButton = document.createElement("button");
