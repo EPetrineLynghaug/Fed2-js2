@@ -17,7 +17,7 @@ import { onDeletePost } from "../ui/post/delete";
 export default function createPostCards(userPosts, isAuthorized) {
   const articlesContainer = document.createElement("div");
   articlesContainer.className =
-    "min-w-100 w-100 max-w-screen-xl gap-8 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4";
+    "min-w-100 w-100 max-w-screen-xl gap-8 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
   // Maks tre kolonner på store skjermer, med økende padding på større skjermer
 
   userPosts.forEach((post) => {

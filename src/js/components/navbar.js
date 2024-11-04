@@ -54,9 +54,6 @@ export default function navbar() {
     "justify-between",
     "items-center",
     "shadow-md",
-    "fixed", // Fixed positioning
-    "top-0", // Stick to the top
-    "left-0", // Align to the left
     "w-full", // Full width
     "z-50" // Ensures it stays above other content
   );
