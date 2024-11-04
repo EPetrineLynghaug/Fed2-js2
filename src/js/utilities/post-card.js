@@ -17,13 +17,13 @@ import { onDeletePost } from "../ui/post/delete";
 export default function createPostCards(userPosts, isAuthorized) {
   const articlesContainer = document.createElement("div");
   articlesContainer.className =
-    "articles-container grid grid-cols-1 gap-8 px-4 py-8 sm:grid-cols-2 lg:grid-cols-3 lg:px-16 xl:px-24";
+    "min-w-100 w-100 max-w-screen-xl gap-8 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4";
   // Maks tre kolonner på store skjermer, med økende padding på større skjermer
 
   userPosts.forEach((post) => {
     const articleContainer = document.createElement("div");
     articleContainer.className =
-      "article-container bg-backgroundCard rounded-lg shadow-lg p-6 flex flex-col justify-between transition-transform transform hover:scale-105 max-h-[450px] w-full max-w-md mx-auto";
+      "bg-backgroundCard rounded-lg shadow-lg p-6 flex flex-col justify-between transition-transform transform hover:scale-105 w-full max-w-md mx-auto";
     // Setter maksimal bredde for å unngå at kortene blir for brede
 
     const userInfoDiv = document.createElement("div");
