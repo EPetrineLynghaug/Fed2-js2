@@ -1,12 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./public/**/*.html", // Includes all HTML files in the public folder and its subfolders
-    "./auth/**/*.{js,html}", // Includes all JS and HTML files in the auth folder (and subfolders like login and register)
-    "./post/**/*.{js,html}", // Includes all JS and HTML files in the post folder (and subfolders like create, edit, single-post, and index)
-    "./profile/**/*.{js,html}", // Includes all JS and HTML files in the profile folder
-    "./src/**/*.{js,html}", // Includes all JS and HTML files in the src folder (and subfolders like components, router, ui, and utilities)
-    "./src/js/utilities/**/*.{js,html}", // Includes all JS and HTML files in the src/js/utilities folder
+    "./public/**/*.html",
+    "./auth/**/*.{js,html}",
+    "./post/**/*.{js,html}",
+    "./profile/**/*.{js,html}",
+    "./src/**/*.{js,html}",
+    "./src/js/utilities/**/*.{js,html}",
   ],
   theme: {
     extend: {
