@@ -4,74 +4,98 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Noroff FED2 JS2 CA</title>
-    <script type="module" crossorigin src="../../assets/app-DqMV62ml.js"></script>
-    <link rel="stylesheet" crossorigin href="../../assets/app-CVPNFTf6.css">
+    <script
+      type="module"
+      crossorigin
+      src="../../assets/app-DqMV62ml.js"
+    ></script>
+    <link rel="stylesheet" href="../../src/css/output.css" />
+    <link rel="stylesheet" crossorigin href="../../assets/app-CVPNFTf6.css" />
   </head>
+  <
   <body class="bg-backgroundDark text-textPrimary font-sans p-4">
-    <h1 class="text-2xl font-bold mb-6">Create Post</h1>
+    <h1 class="text-2xl font-bold mb-6 text-center text-softWhite">
+      Create Post
+    </h1>
 
     <form
       name="createPost"
-      class="space-y-4 bg-backgroundCard p-6 rounded-lg shadow-md max-w-md mx-auto"
+      class="space-y-6 bg-backgroundCard p-8 rounded-lg shadow-lg max-w-lg mx-auto"
     >
       <div class="flex flex-col">
-        <label for="title" class="mb-1 text-textSecondary">Title</label>
+        <label for="title" class="mb-1 text-sm font-medium text-textSecondary"
+          >Title</label
+        >
         <input
           id="title"
           type="text"
           name="title"
           required
           maxlength="20"
-          class="p-2 rounded bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none"
+          placeholder="Enter a title for your post"
+          class="p-3 rounded-md bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none focus:ring-1 focus:ring-linkColor transition-shadow duration-150"
         />
       </div>
 
       <div class="flex flex-col">
-        <label for="body" class="mb-1 text-textSecondary">Body</label>
+        <label for="body" class="mb-1 text-sm font-medium text-textSecondary"
+          >Body</label
+        >
         <textarea
           id="body"
           name="body"
           maxlength="200"
-          class="p-2 rounded bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none"
+          placeholder="Write the content of your post"
+          class="p-3 rounded-md bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none focus:ring-1 focus:ring-linkColor transition-shadow duration-150 resize-none"
+          rows="4"
         ></textarea>
       </div>
 
       <div class="flex flex-col">
-        <label for="tags" class="mb-1 text-textSecondary">Tags</label>
+        <label for="tags" class="mb-1 text-sm font-medium text-textSecondary"
+          >Tags</label
+        >
         <input
           id="tags"
           type="text"
           name="tags"
           maxlength="20"
-          class="p-2 rounded bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none"
+          placeholder="Enter tags separated by spaces"
+          class="p-3 rounded-md bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none focus:ring-1 focus:ring-linkColor transition-shadow duration-150"
         />
       </div>
 
       <div class="flex flex-col space-y-2">
-        <label for="media" class="mb-1 text-textSecondary">Image URL</label>
+        <label for="media" class="mb-1 text-sm font-medium text-textSecondary"
+          >Image URL</label
+        >
         <input
           id="media"
-          type="text"
+          type="url"
           name="media"
           maxlength="255"
-          placeholder="Enter image URL"
-          class="p-2 rounded bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none"
+          placeholder="https://example.com/image.jpg"
+          class="p-3 rounded-md bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none focus:ring-1 focus:ring-linkColor transition-shadow duration-150"
         />
 
-        <label for="alt" class="mt-2 mb-1 text-textSecondary">Image ALT</label>
+        <label
+          for="alt"
+          class="mt-3 mb-1 text-sm font-medium text-textSecondary"
+          >Image ALT Text</label
+        >
         <input
           id="alt"
           type="text"
           name="alt"
           maxlength="255"
-          placeholder="Enter image ALT"
-          class="p-2 rounded bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none"
+          placeholder="Describe the image (optional)"
+          class="p-3 rounded-md bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none focus:ring-1 focus:ring-linkColor transition-shadow duration-150"
         />
       </div>
 
       <button
         type="submit"
-        class="w-full bg-linkColor text-softWhite py-2 rounded hover:bg-successTeal"
+        class="w-full py-3 rounded-md font-semibold text-white bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-300 transition-all duration-150 transform active:scale-95"
       >
         Create Post
       </button>

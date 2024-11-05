@@ -1,4 +1,5 @@
 import { createPost } from "../../api/post/create";
+import { showCustomAlert } from "../../utilities/customAlert";
 
 /**
  * @async
@@ -9,17 +10,24 @@ import { createPost } from "../../api/post/create";
  * @param {Event} event - The event object representing the form submission event.
  * @returns {Promise<void>} This function does not return a value.
  */
+
 export async function onCreatePost(event) {
   event.preventDefault();
 
   const form = event.target;
-  const title = form ? form[0].value : "";
-  const body = form ? form[1].value : "";
-  const tags = form ? form[2].value : "";
-  const mediaUrl = form ? form[3].value : "";
-  const mediaAlt = form ? form[4].value : "";
+  const title = form ? form[0].value.trim() : "";
+  const body = form ? form[1].value.trim() : "";
+  const tags = form ? form[2].value.trim() : "";
+  const mediaUrl = form ? form[3].value.trim() : "";
+  const mediaAlt = form ? form[4].value.trim() : "";
 
-  const tagArr = tags.split(" ");
+  // Validation for required fields
+  if (!title || !body) {
+    showCustomAlert("Title and body are required to create a post.", "error");
+    return;
+  }
+
+  const tagArr = tags ? tags.split(" ") : [];
 
   const imgExtensions = ["jpg", "jpeg", "png", "gif", "webp"];
 
@@ -35,17 +43,19 @@ export async function onCreatePost(event) {
     }
   };
 
-  if (media.length > 0) {
-    const isValidimage = isValidImageUrl(media);
-
-    if (!isValidimage) {
-      alert("Please enter a valid image URL");
-      return;
-    }
+  if (mediaUrl && !isValidImageUrl(mediaUrl)) {
+    showCustomAlert("Please enter a valid image URL.", "error");
+    return;
   }
+
+  const submitButton = form.querySelector("button[type='submit']");
+  submitButton.disabled = true;
+  submitButton.innerHTML =
+    '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Creating...';
+
   const reqBody = {
     title,
-    body: body || undefined,
+    body,
     tags: tagArr.length > 0 ? tagArr : undefined,
     media: mediaUrl ? { url: mediaUrl, alt: mediaAlt || undefined } : undefined,
   };
@@ -54,13 +64,20 @@ export async function onCreatePost(event) {
     const post = await createPost(reqBody);
 
     if (post && post.id) {
-      alert("Post created successfully!");
+      showCustomAlert("Post created successfully!", "success");
       window.location.href = `/post/single-post/?id=${post.id}`;
     } else {
       throw new Error("Post ID not returned");
     }
   } catch (error) {
     console.error("Error creating post:", error);
-    alert("There was an error creating the post. Please try again.");
+    showCustomAlert(
+      "There was an error creating the post. Please try again.",
+      "error"
+    );
+  } finally {
+    // Re-enable the submit button
+    submitButton.disabled = false;
+    submitButton.innerHTML = "Submit Post";
   }
 }
