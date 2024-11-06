@@ -45,12 +45,12 @@ export default function navbar() {
     "fixed",
     "top-0"
   );
-  nav.style.height = "64px"; // Define height for navbar
+  nav.style.height = "64px";
 
   // Branding
   const branding = document.createElement("div");
   branding.classList.add("text-white", "font-bold", "text-xl");
-  branding.innerText = "My Application";
+  branding.innerText = "Noroff Network";
 
   // Menu container for tablet/desktop view
   const menu = document.createElement("div");
