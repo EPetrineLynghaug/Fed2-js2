@@ -1,6 +1,7 @@
 //@ts-check
 import { login } from "../../api/auth/login";
 import { emailCheck, pswCheck } from "../../utilities/regex";
+import { showCustomAlert } from "../../utilities/customAlert";
 
 /**
  * @async
@@ -13,27 +14,57 @@ export async function onLogin(event) {
   event.preventDefault();
 
   const form = event.target;
-  const email = form ? form[0].value : ""; //inline if else.
+  const email = form ? form[0].value : "";
   const password = form ? form[1].value : "";
 
-  if (!emailCheck(email) || !pswCheck(password)) {
+  // Email and password validation with custom alert
+  if (!emailCheck(email)) {
+    showCustomAlert(
+      "Invalid email. Must be a valid Noroff student email (stud.noroff.no) or (noroff.no).",
+      "error"
+    );
     return;
   }
 
-  const data = await login({ email, password });
-  if (!data) return;
+  if (!pswCheck(password)) {
+    showCustomAlert(
+      "Invalid password. Must be at least 8 characters long.",
+      "error"
+    );
+    return;
+  }
 
-  const user = {
-    name: data.name,
-    email: data.email,
-    bio: data.bio,
-    avatar: data.avatar,
-    banner: data.banner,
-  };
+  try {
+    // Attempt login request
+    const data = await login({ email, password });
+    if (!data) {
+      showCustomAlert("Login failed. Please try again.", "error");
+      return;
+    }
 
-  localStorage.setItem("token", data.accessToken);
+    // Store user data in localStorage
+    const user = {
+      name: data.name,
+      email: data.email,
+      bio: data.bio,
+      avatar: data.avatar,
+      banner: data.banner,
+    };
 
-  localStorage.setItem("userInfo", JSON.stringify(user));
+    localStorage.setItem("token", data.accessToken);
+    localStorage.setItem("userInfo", JSON.stringify(user));
 
-  window.location.href = "/";
+    // Display success alert with a delay before redirect
+    showCustomAlert("Login successful!", "success");
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 1500);
+  } catch (error) {
+    // Show error alert if login fails unexpectedly
+    showCustomAlert(
+      "An error occurred during login. Please try again later.",
+      "error"
+    );
+    console.error("Login error:", error);
+  }
 }

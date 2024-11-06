@@ -1,3 +1,5 @@
+import { showCustomAlert } from "../utilities/customAlert.js";
+
 /**
  * @function emailCheck
  * @description Validates an email address to ensure it is a valid Noroff student email.
@@ -10,7 +12,10 @@ function emailCheck(email) {
   let emailMatch = emailRegex.test(email);
 
   if (!emailMatch) {
-    alert("Epost ikke gylding, må være en stud.noroff.no epost");
+    showCustomAlert(
+      "Invalid email. Must be a valid Noroff student email (stud.noroff.no).",
+      "error"
+    );
     return false;
   }
   return true;
@@ -24,10 +29,14 @@ function emailCheck(email) {
  * @returns {boolean} - Returns true if the password is valid; otherwise, false.
  */
 function pswCheck(password) {
-  const pswRegex = /[a-zA-Z0-9]{8,20}/g;
+  const pswRegex = /^[a-zA-Z0-9]{8,20}$/;
   let pswMatch = pswRegex.test(password);
+
   if (!pswMatch) {
-    alert("Passord ikke gylding, må være minst 8 tegn");
+    showCustomAlert(
+      "Invalid password. Must be at least 8 characters long.",
+      "error"
+    );
     return false;
   }
   return true;
@@ -35,7 +44,7 @@ function pswCheck(password) {
 
 /**
  * @function namecheck
- * @description Validates a name to ensure it only contains letters and underscores.
+ * @description Validates a name to ensure it only contains letters, numbers, underscores, and special characters.
  * The name can include both uppercase and lowercase letters and underscores.
  * @param {string} name - The name to validate.
  * @returns {boolean} - Returns true if the name is valid; otherwise, false.
@@ -45,8 +54,9 @@ function namecheck(name) {
   let nameMatch = nameRegex.test(name);
 
   if (name.length === 0 || !nameMatch) {
-    alert(
-      "Navn ikke gyldig. Kan inneholde bokstaver, tall, understrek og spesialtegn, men kan ikke være tom."
+    showCustomAlert(
+      "Invalid name. It can contain letters, numbers, underscores, and special characters, but cannot be empty.",
+      "error"
     );
     return false;
   }
