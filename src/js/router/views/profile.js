@@ -25,19 +25,28 @@ async function displayUserProfile(username) {
   if (userProfile) {
     const profile = document.querySelector(".profile");
 
-    // Container for avatar and name, aligned to the left
+    // Set main profile container layout
+    profile.classList.add(
+      "min-w-100",
+      "w-full",
+      "max-w-screen-xl",
+      "py-8",
+      "px-4",
+      "mx-auto"
+    );
+
+    // Inner container for avatar and name
     const profileContainer = document.createElement("div");
     profileContainer.classList.add(
       "flex",
       "items-center",
       "justify-start",
       "space-x-4",
-      "mx-auto",
       "w-full",
       "max-w-md"
     );
 
-    // Adjusted Avatar Image with responsive sizing
+    // Avatar image
     if (userProfile.avatar) {
       const avatarImg = document.createElement("img");
       avatarImg.src = userProfile.avatar.url
@@ -63,7 +72,7 @@ async function displayUserProfile(username) {
       profileContainer.append(avatarImg);
     }
 
-    // Profile Name with styling
+    // Profile name
     const profileName = document.createElement("p");
     profileName.innerText = userProfile.name;
     profileName.classList.add(
@@ -77,7 +86,7 @@ async function displayUserProfile(username) {
     profileContainer.append(profileName);
     profile.append(profileContainer);
 
-    // Posts Section
+    // Display user posts if available
     if (userProfile.posts.length > 0) {
       const isAuthorized = userInfo.email === userProfile.email;
       const articles = createPostCards(userProfile.posts, isAuthorized);
@@ -87,12 +96,7 @@ async function displayUserProfile(username) {
     const profile = document.querySelector(".profile");
     const errorMessage = document.createElement("p");
     errorMessage.innerText = "User not found";
-    errorMessage.classList.add(
-      "text-md",
-      "font-semibold",
-      "text-red-500",
-      "text-center"
-    );
+    errorMessage.classList.add("text-md", "font-semibold", "text-red-500", "text-center");
     profile.append(errorMessage);
   }
 }
