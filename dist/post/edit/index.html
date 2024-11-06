@@ -4,79 +4,90 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Noroff FED2 JS2 CA</title>
-    <script type="module" crossorigin src="../../assets/app-DqMV62ml.js"></script>
-    <link rel="stylesheet" crossorigin href="../../assets/app-CVPNFTf6.css">
+    <script
+      type="module"
+      crossorigin
+      src="../../assets/app-DqMV62ml.js"
+    ></script>
+    <link rel="stylesheet" crossorigin href="../../assets/app-CVPNFTf6.css" />
   </head>
   <body class="bg-backgroundDark text-textPrimary font-sans p-4">
-    <h1 class="text-2xl font-bold mb-6">Edit Post</h1>
-
-    <form
-      name="editPost"
-      class="space-y-4 bg-backgroundCard p-6 rounded-lg shadow-md max-w-md mx-auto"
+    <div
+      id="content"
+      class="p-4 w-full max-w-screen-xl mx-auto flex items-center justify-center h-screen"
     >
-      <div class="flex flex-col">
-        <label for="title" class="mb-1 text-textSecondary">Title</label>
-        <input
-          id="title"
-          type="text"
-          name="title"
-          required
-          maxlength="20"
-          class="p-2 rounded bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none"
-        />
-      </div>
+      <h1 class="text-2xl font-bold mb-6">Edit Post</h1>
 
-      <div class="flex flex-col">
-        <label for="body" class="mb-1 text-textSecondary">Body</label>
-        <textarea
-          id="body"
-          name="body"
-          maxlength="200"
-          class="p-2 rounded bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none"
-        ></textarea>
-      </div>
-
-      <div class="flex flex-col">
-        <label for="tags" class="mb-1 text-textSecondary">Tags</label>
-        <input
-          id="tags"
-          type="text"
-          name="tags"
-          maxlength="20"
-          class="p-2 rounded bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none"
-        />
-      </div>
-
-      <div class="flex flex-col">
-        <label for="media" class="mb-1 text-textSecondary">Image URL</label>
-        <input
-          id="media"
-          type="text"
-          name="media"
-          maxlength="255"
-          placeholder="Enter image URL"
-          class="p-2 rounded bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none"
-        />
-      </div>
-
-      <div class="flex flex-col">
-        <label for="alt" class="mt-2 mb-1 text-textSecondary">Image ALT</label>
-        <input
-          id="alt"
-          type="text"
-          name="alt"
-          maxlength="255"
-          placeholder="Enter image ALT"
-          class="p-2 rounded bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none"
-        />
-      </div>
-
-      <button
-        type="submit"
-        class="w-full bg-linkColor text-softWhite py-2 rounded hover:bg-successTeal"
+      <form
+        name="editPost"
+        class="space-y-4 bg-backgroundCard p-6 rounded-lg shadow-md max-w-md mx-auto"
       >
-        Update Post
-      </button>
-    </form>
+        <div class="flex flex-col">
+          <label for="title" class="mb-1 text-textSecondary">Title</label>
+          <input
+            id="title"
+            type="text"
+            name="title"
+            required
+            maxlength="20"
+            class="p-2 rounded bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none"
+          />
+        </div>
+
+        <div class="flex flex-col">
+          <label for="body" class="mb-1 text-textSecondary">Body</label>
+          <textarea
+            id="body"
+            name="body"
+            maxlength="200"
+            class="p-2 rounded bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none"
+          ></textarea>
+        </div>
+
+        <div class="flex flex-col">
+          <label for="tags" class="mb-1 text-textSecondary">Tags</label>
+          <input
+            id="tags"
+            type="text"
+            name="tags"
+            maxlength="20"
+            class="p-2 rounded bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none"
+          />
+        </div>
+
+        <div class="flex flex-col">
+          <label for="media" class="mb-1 text-textSecondary">Image URL</label>
+          <input
+            id="media"
+            type="text"
+            name="media"
+            maxlength="255"
+            placeholder="Enter image URL"
+            class="p-2 rounded bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none"
+          />
+        </div>
+
+        <div class="flex flex-col">
+          <label for="alt" class="mt-2 mb-1 text-textSecondary"
+            >Image ALT</label
+          >
+          <input
+            id="alt"
+            type="text"
+            name="alt"
+            maxlength="255"
+            placeholder="Enter image ALT"
+            class="p-2 rounded bg-hoverGray text-textPrimary border border-transparent focus:border-linkColor focus:outline-none"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-linkColor text-softWhite py-2 rounded hover:bg-successTeal"
+        >
+          Update Post
+        </button>
+      </form>
+    </div>
   </body>
 </html>

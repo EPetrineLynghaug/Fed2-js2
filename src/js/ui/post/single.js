@@ -12,13 +12,11 @@ import { readPost } from "../../api/post/read";
 
 export async function onSinglePost(id) {
   try {
+    // Fetch post data from the API
     const post = await readPost(id);
+    if (!post) throw new Error("Post not found");
 
-    if (!post) {
-      throw new Error("Post not found");
-    }
-
-    // Main post container with responsive width and padding
+    // Create main container for the post
     const postContainer = document.createElement("div");
     postContainer.classList.add(
       "p-4",
@@ -34,39 +32,38 @@ export async function onSinglePost(id) {
     postContainer.style.borderRadius = "14px";
     postContainer.style.transition = "transform 0.15s ease";
 
-    // Author information
+    // Display author information
     const author = document.createElement("p");
     author.innerText = `By ${post.author.name}`;
     author.classList.add("text-sm", "font-semibold", "mb-2");
     author.style.color = "#BB86FC";
     postContainer.appendChild(author);
 
-    // Post title
+    // Display post title
     const title = document.createElement("h1");
     title.innerText = post.title || "Untitled";
     title.classList.add("text-2xl", "md:text-3xl", "font-bold", "mb-4");
     title.style.color = "#E0E0E0";
     postContainer.appendChild(title);
 
-    // Full post body text with balanced font size
+    // Display post body
     const body = document.createElement("p");
     body.innerText = post.body || "No content available";
     body.classList.add("text-base", "leading-6", "md:leading-7", "mb-5");
     body.style.color = "#A0A0A0";
     postContainer.appendChild(body);
 
-    // Post media (image) with a set height limit
+    // Display post media if available
     if (post.media && post.media.url) {
       const img = document.createElement("img");
       img.src = post.media.url;
       img.alt = post.media.alt || "Post image";
       img.classList.add("w-full", "object-cover", "mt-4", "rounded-md");
       img.style.maxHeight = "300px";
-      img.style.width = "100%";
       postContainer.appendChild(img);
     }
 
-    // Post tags
+    // Display tags
     const tagsContainer = document.createElement("div");
     tagsContainer.classList.add("flex", "flex-wrap", "gap-2", "mt-3");
     post.tags.forEach((tag) => {
@@ -79,7 +76,7 @@ export async function onSinglePost(id) {
     });
     postContainer.appendChild(tagsContainer);
 
-    // Date posted
+    // Display post creation date
     const dateDiv = document.createElement("p");
     dateDiv.classList.add("text-xs", "mt-3");
     const date = new Date(post.created);
@@ -87,15 +84,14 @@ export async function onSinglePost(id) {
     dateDiv.style.color = "#A0A0A0";
     postContainer.appendChild(dateDiv);
 
-    // Define common button classes for consistent sizing and style
+    // Define base button styling classes
     const baseButtonClasses =
       "text-white font-medium px-2 py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 rounded focus:outline-none focus:ring-1 focus:ring-offset-1 transition-colors duration-150 ease-in-out";
 
-    // Button container for Edit and Delete buttons on the right side
+    // Create Edit and Delete buttons for post authors
     const buttonContainer = document.createElement("div");
     buttonContainer.classList.add("flex", "justify-end", "gap-2", "mt-4");
 
-    // Edit button
     const editButton = document.createElement("button");
     editButton.innerText = "Edit";
     editButton.className = `${baseButtonClasses} bg-purple-400 hover:bg-purple-500`;
@@ -103,7 +99,6 @@ export async function onSinglePost(id) {
       window.location.href = `/post/edit/?id=${post.id}`;
     };
 
-    // Delete button
     const deleteButton = document.createElement("button");
     deleteButton.innerText = "Delete";
     deleteButton.className = `${baseButtonClasses} bg-red-500 hover:bg-red-600`;
@@ -111,14 +106,14 @@ export async function onSinglePost(id) {
       console.log(`Post ${post.id} deleted`);
     };
 
-    // Only add Edit and Delete buttons if the user is the author
+    // Append Edit/Delete buttons if user owns the post
     if (post.isUserPost) {
       buttonContainer.appendChild(editButton);
       buttonContainer.appendChild(deleteButton);
       postContainer.appendChild(buttonContainer);
     }
 
-    // Back button with consistent size
+    // Add a Back button for navigation
     const backButton = document.createElement("button");
     backButton.innerText = "Back";
     backButton.className = `${baseButtonClasses} bg-teal-500 hover:bg-teal-600 mt-5`;
@@ -131,7 +126,7 @@ export async function onSinglePost(id) {
   } catch (error) {
     console.error("Error fetching post:", error.message);
 
-    // Create error card
+    // Display error message if post loading fails
     const errorContainer = document.createElement("div");
     errorContainer.classList.add(
       "p-4",
@@ -148,15 +143,13 @@ export async function onSinglePost(id) {
       "rounded-lg",
       "text-center"
     );
-    errorContainer.style.borderRadius = "14px";
 
-    // Error message
     const errorMessage = document.createElement("p");
     errorMessage.innerText = `Failed to load the post: ${error.message}`;
     errorMessage.classList.add("text-lg", "font-semibold", "mb-4");
     errorContainer.appendChild(errorMessage);
 
-    // Back button for error card
+    // Back button for error screen
     const errorBackButton = document.createElement("button");
     errorBackButton.innerText = "Back";
     errorBackButton.className = `${baseButtonClasses} bg-teal-500 hover:bg-teal-600 mt-4`;

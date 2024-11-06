@@ -15,37 +15,58 @@ export async function onRegister(event) {
   event.preventDefault();
 
   const form = event.target;
-  const name = form ? form[0].value : "";
-  const email = form ? form[1].value : "";
-  const password = form ? form[2].value : "";
+  const name = form ? form[0].value.trim() : "";
+  const email = form ? form[1].value.trim() : "";
+  const password = form ? form[2].value.trim() : "";
 
-  if (!emailCheck(email) || !pswCheck(password) || !namecheck(name)) {
+  // Individual field validations with specific alerts
+  if (!namecheck(name)) {
     showCustomAlert(
-      "Please ensure all fields are filled out correctly.",
+      "Invalid name. It can contain letters, numbers, underscores, and special characters, but cannot be empty.",
       "error"
     );
     return;
   }
 
-  const formData = {
-    name,
-    email,
-    password,
-  };
-
-  const result = await register(formData);
-
-  if (result) {
+  if (!emailCheck(email)) {
     showCustomAlert(
-      "Your account has been successfully created! Redirecting to login...",
-      "success"
+      "Invalid email format. Please enter a valid Noroff student email, such as 'user@stud.noroff.no' or 'user@noroff.no'.",
+      "error"
     );
-    setTimeout(() => {
-      window.location.href = "/auth/login/";
-    }, 1500);
-  } else {
+    return;
+  }
+
+  if (!pswCheck(password)) {
     showCustomAlert(
-      "Unable to complete registration. Please try again later.",
+      "Invalid password. Password must be 8-20 characters long and can only include letters and numbers.",
+      "error"
+    );
+    return;
+  }
+
+  const formData = { name, email, password };
+
+  try {
+    const result = await register(formData);
+
+    if (result) {
+      showCustomAlert(
+        "Your account has been successfully created! Redirecting to login...",
+        "success"
+      );
+      setTimeout(() => {
+        window.location.href = "/auth/login/";
+      }, 1500);
+    } else {
+      showCustomAlert(
+        "Unable to complete registration. Please try again later.",
+        "error"
+      );
+    }
+  } catch (error) {
+    console.error("Registration error:", error);
+    showCustomAlert(
+      "An unexpected error occurred during registration. Please try again later.",
       "error"
     );
   }
