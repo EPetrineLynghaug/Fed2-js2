@@ -18,7 +18,6 @@ import { getUserInfo } from "../utilities/userInfo";
 let meny;
 if (localStorage.token) {
   const user = getUserInfo();
-
   meny = [
     { name: "Home", url: "/" },
     { name: "New Post", url: "/post/create/" },
@@ -46,6 +45,7 @@ export default function navbar() {
     "fixed",
     "top-0"
   );
+  nav.style.height = "64px"; // Define height for navbar
 
   // Branding
   const branding = document.createElement("div");
@@ -56,7 +56,7 @@ export default function navbar() {
   const menu = document.createElement("div");
   menu.classList.add("hidden", "sm:flex", "gap-6", "items-center", "ml-auto");
 
-  //  Menu items with horizontal layout for tablet/desktop
+  // Menu items with horizontal layout for tablet/desktop
   meny.forEach((item) => {
     const atag = document.createElement("a");
     atag.href = item.url;
@@ -170,11 +170,16 @@ export default function navbar() {
   nav.append(branding, hamburger, menu, mobileMenu);
   document.body.prepend(nav);
 
+  // Set padding on main content to prevent overlap with navbar
+  const content = document.getElementById("content");
+  if (content) {
+    content.style.paddingTop = "64px";
+  }
+
   // Toggle functionality for mobile menu
   hamburger.addEventListener("click", () => {
     mobileMenu.classList.toggle("hidden");
-    const expanded =
-      hamburger.getAttribute("aria-expanded") === "true" || false;
+    const expanded = hamburger.getAttribute("aria-expanded") === "true";
     hamburger.setAttribute("aria-expanded", !expanded);
   });
 }

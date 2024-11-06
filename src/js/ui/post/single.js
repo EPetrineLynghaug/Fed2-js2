@@ -87,6 +87,10 @@ export async function onSinglePost(id) {
     dateDiv.style.color = "#A0A0A0";
     postContainer.appendChild(dateDiv);
 
+    // Define common button classes for consistent sizing and style
+    const baseButtonClasses =
+      "text-white font-medium px-2 py-1 md:px-3 md:py-1.5 lg:px-4 lg:py-2 rounded focus:outline-none focus:ring-1 focus:ring-offset-1 transition-colors duration-150 ease-in-out";
+
     // Button container for Edit and Delete buttons on the right side
     const buttonContainer = document.createElement("div");
     buttonContainer.classList.add("flex", "justify-end", "gap-2", "mt-4");
@@ -94,17 +98,7 @@ export async function onSinglePost(id) {
     // Edit button
     const editButton = document.createElement("button");
     editButton.innerText = "Edit";
-    editButton.classList.add(
-      "text-white",
-      "font-medium",
-      "px-3",
-      "py-1",
-      "rounded",
-      "transition-colors",
-      "duration-150",
-      "ease-in-out"
-    );
-    editButton.style.backgroundColor = "#BB86FC";
+    editButton.className = `${baseButtonClasses} bg-purple-400 hover:bg-purple-500`;
     editButton.onclick = () => {
       window.location.href = `/post/edit/?id=${post.id}`;
     };
@@ -112,19 +106,8 @@ export async function onSinglePost(id) {
     // Delete button
     const deleteButton = document.createElement("button");
     deleteButton.innerText = "Delete";
-    deleteButton.classList.add(
-      "text-white",
-      "font-medium",
-      "px-3",
-      "py-1",
-      "rounded",
-      "transition-colors",
-      "duration-150",
-      "ease-in-out"
-    );
-    deleteButton.style.backgroundColor = "#CF6679";
+    deleteButton.className = `${baseButtonClasses} bg-red-500 hover:bg-red-600`;
     deleteButton.onclick = async () => {
-      // Add delete functionality here
       console.log(`Post ${post.id} deleted`);
     };
 
@@ -135,23 +118,10 @@ export async function onSinglePost(id) {
       postContainer.appendChild(buttonContainer);
     }
 
-    // Back button with smaller styling
+    // Back button with consistent size
     const backButton = document.createElement("button");
     backButton.innerText = "Back";
-    backButton.classList.add(
-      "text-white",
-      "font-medium",
-      "px-3",
-      "py-1",
-      "rounded",
-      "mt-5",
-      "transition-colors",
-      "duration-150",
-      "ease-in-out"
-    );
-    backButton.style.backgroundColor = "#03DAC6";
-    backButton.style.fontSize = "0.85rem";
-    backButton.style.maxWidth = "100px";
+    backButton.className = `${baseButtonClasses} bg-teal-500 hover:bg-teal-600 mt-5`;
     backButton.onclick = () => {
       window.location.href = "/";
     };
@@ -189,19 +159,7 @@ export async function onSinglePost(id) {
     // Back button for error card
     const errorBackButton = document.createElement("button");
     errorBackButton.innerText = "Back";
-    errorBackButton.classList.add(
-      "text-white",
-      "font-medium",
-      "px-3",
-      "py-1",
-      "rounded",
-      "mt-4",
-      "transition-colors",
-      "duration-150",
-      "ease-in-out"
-    );
-    errorBackButton.style.backgroundColor = "#03DAC6";
-    errorBackButton.style.fontSize = "0.85rem";
+    errorBackButton.className = `${baseButtonClasses} bg-teal-500 hover:bg-teal-600 mt-4`;
     errorBackButton.onclick = () => {
       window.location.href = "/";
     };
