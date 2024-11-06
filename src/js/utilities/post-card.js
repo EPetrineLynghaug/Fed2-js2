@@ -46,7 +46,7 @@ export default function createPostCards(userPosts, isAuthorized) {
 
     const articleBody = document.createElement("div");
     articleBody.className =
-      "article-body space-y-3 overflow-hidden relative flex flex-col"; // Removed flex-grow
+      "article-body space-y-3 overflow-hidden relative flex flex-col"; 
 
     const articleTitle = document.createElement("h2");
     articleTitle.innerText = post.title;
