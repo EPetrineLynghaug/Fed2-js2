@@ -18,17 +18,26 @@ const name = nameUrl.get("name");
  * @param {string} username - The username of the user whose profile is to be displayed.
  * @returns {Promise<void>} - A promise that resolves when the profile is displayed.
  */
+
 async function displayUserProfile(username) {
   const userProfile = await readProfile(username);
 
   if (userProfile) {
     const profile = document.querySelector(".profile");
 
-    const profilName = document.createElement("p");
-    profilName.innerText = userProfile.name;
+    // Container for avatar and name, aligned to the left
+    const profileContainer = document.createElement("div");
+    profileContainer.classList.add(
+      "flex",
+      "items-center",
+      "justify-start",
+      "space-x-4",
+      "mx-auto",
+      "w-full",
+      "max-w-md"
+    );
 
-    profile.append(profilName);
-
+    // Adjusted Avatar Image with responsive sizing
     if (userProfile.avatar) {
       const avatarImg = document.createElement("img");
       avatarImg.src = userProfile.avatar.url
@@ -39,18 +48,52 @@ async function displayUserProfile(username) {
         ? userProfile.avatar.alt
         : `${userProfile.name}'s avatar`;
 
-      avatarImg.classList.add("avatar");
-      profile.append(avatarImg);
+      avatarImg.classList.add(
+        "w-10",
+        "h-10",
+        "sm:w-12",
+        "sm:h-12",
+        "md:w-16",
+        "md:h-16",
+        "rounded-full",
+        "object-cover",
+        "border-2",
+        "border-gray-400"
+      );
+      profileContainer.append(avatarImg);
     }
 
-    if (userProfile.posts.length > 0) {
-      const isAuthorized = userInfo.email === userProfile.email ? true : false;
-      const articles = createPostCards(userProfile.posts, isAuthorized);
+    // Profile Name with styling
+    const profileName = document.createElement("p");
+    profileName.innerText = userProfile.name;
+    profileName.classList.add(
+      "text-base",
+      "sm:text-lg",
+      "md:text-xl",
+      "font-semibold",
+      "text-textPrimary"
+    );
 
+    profileContainer.append(profileName);
+    profile.append(profileContainer);
+
+    // Posts Section
+    if (userProfile.posts.length > 0) {
+      const isAuthorized = userInfo.email === userProfile.email;
+      const articles = createPostCards(userProfile.posts, isAuthorized);
       document.querySelector(".posts").append(articles);
     }
   } else {
-    document.querySelector(".user-name").innerText = "User not found";
+    const profile = document.querySelector(".profile");
+    const errorMessage = document.createElement("p");
+    errorMessage.innerText = "User not found";
+    errorMessage.classList.add(
+      "text-md",
+      "font-semibold",
+      "text-red-500",
+      "text-center"
+    );
+    profile.append(errorMessage);
   }
 }
 
