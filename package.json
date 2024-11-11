@@ -12,7 +12,7 @@
     "start": "npx live-server --wait=500",
     "doc": "jsdoc -c jsdoc.json",
     "remix vite:build": "npm run build"
-},
+  },
   "devDependencies": {
     "jsdoc": "^4.0.4",
     "live-server": "^1.2.2",
