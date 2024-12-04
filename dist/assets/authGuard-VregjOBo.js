@@ -1,0 +1,1 @@
+import{s as o}from"./customAlert-u-7FB-Wo.js";function e(){localStorage.token||(o("You must be logged in to view this page","error"),setTimeout(()=>{window.location.href="/auth/login/"},1500))}export{e as a};

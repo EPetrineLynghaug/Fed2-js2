@@ -1,4 +1,8 @@
 import navbar from "../../components/navbar";
+import { showCustomAlert } from "../../utilities/customAlert";
 
-alert("Page cannot be found in /src/views");
+await showCustomAlert(
+  "Page not found. Please check the URL and try again.",
+  "error"
+);
 navbar();

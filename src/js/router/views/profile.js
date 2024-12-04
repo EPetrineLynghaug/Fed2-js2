@@ -3,6 +3,7 @@ import { getUserInfo } from "../../utilities/userInfo";
 import { readProfile } from "../../api/profile/read";
 import createPostCards from "../../utilities/post-card";
 import navbar from "../../components/navbar";
+
 authGuard();
 navbar();
 
@@ -17,17 +18,35 @@ const name = nameUrl.get("name");
  * @param {string} username - The username of the user whose profile is to be displayed.
  * @returns {Promise<void>} - A promise that resolves when the profile is displayed.
  */
+
 async function displayUserProfile(username) {
   const userProfile = await readProfile(username);
 
   if (userProfile) {
     const profile = document.querySelector(".profile");
 
-    const profilName = document.createElement("p");
-    profilName.innerText = userProfile.name;
+    // Set main profile container layout
+    profile.classList.add(
+      "min-w-100",
+      "w-full",
+      "max-w-screen-xl",
+      "py-8",
+      "px-4",
+      "mx-auto"
+    );
 
-    profile.append(profilName);
+    // Inner container for avatar and name
+    const profileContainer = document.createElement("div");
+    profileContainer.classList.add(
+      "flex",
+      "items-center",
+      "justify-start",
+      "space-x-4",
+      "w-full",
+      "max-w-md"
+    );
 
+    // Avatar image
     if (userProfile.avatar) {
       const avatarImg = document.createElement("img");
       avatarImg.src = userProfile.avatar.url
@@ -38,18 +57,47 @@ async function displayUserProfile(username) {
         ? userProfile.avatar.alt
         : `${userProfile.name}'s avatar`;
 
-      avatarImg.classList.add("avatar");
-      profile.append(avatarImg);
+      avatarImg.classList.add(
+        "w-10",
+        "h-10",
+        "sm:w-12",
+        "sm:h-12",
+        "md:w-16",
+        "md:h-16",
+        "rounded-full",
+        "object-cover",
+        "border-2",
+        "border-gray-400"
+      );
+      profileContainer.append(avatarImg);
     }
 
-    if (userProfile.posts.length > 0) {
-      const isAuthorized = userInfo.email === userProfile.email ? true : false;
-      const articles = createPostCards(userProfile.posts, isAuthorized);
+    // Profile name
+    const profileName = document.createElement("p");
+    profileName.innerText = userProfile.name;
+    profileName.classList.add(
+      "text-base",
+      "sm:text-lg",
+      "md:text-xl",
+      "font-semibold",
+      "text-textPrimary"
+    );
 
+    profileContainer.append(profileName);
+    profile.append(profileContainer);
+
+    // Display user posts if available
+    if (userProfile.posts.length > 0) {
+      const isAuthorized = userInfo.email === userProfile.email;
+      const articles = createPostCards(userProfile.posts, isAuthorized);
       document.querySelector(".posts").append(articles);
     }
   } else {
-    document.querySelector(".user-name").innerText = "User not found";
+    const profile = document.querySelector(".profile");
+    const errorMessage = document.createElement("p");
+    errorMessage.innerText = "User not found";
+    errorMessage.classList.add("text-md", "font-semibold", "text-red-500", "text-center");
+    profile.append(errorMessage);
   }
 }
 

@@ -1,6 +1,7 @@
 //@ts-check
 import { login } from "../../api/auth/login";
 import { emailCheck, pswCheck } from "../../utilities/regex";
+import { showCustomAlert } from "../../utilities/customAlert";
 
 /**
  * @async
@@ -13,27 +14,63 @@ export async function onLogin(event) {
   event.preventDefault();
 
   const form = event.target;
-  const email = form ? form[0].value : ""; //inline if else.
-  const password = form ? form[1].value : "";
+  const email = form ? form[0].value.trim() : "";
+  const password = form ? form[1].value.trim() : "";
 
-  if (!emailCheck(email) || !pswCheck(password)) {
+  // Check email validity and show alert if invalid
+  if (!emailCheck(email)) {
+    showCustomAlert(
+      "Invalid email format. Please use a valid Noroff student email, such as 'user@stud.noroff.no' or 'user@noroff.no'.",
+      "error"
+    );
     return;
   }
 
-  const data = await login({ email, password });
-  if (!data) return;
+  // Check password validity and show alert if invalid
+  if (!pswCheck(password)) {
+    showCustomAlert(
+      "Invalid password. Password must be 8-20 characters long and can only include letters and numbers.",
+      "error"
+    );
+    return;
+  }
 
-  const user = {
-    name: data.name,
-    email: data.email,
-    bio: data.bio,
-    avatar: data.avatar,
-    banner: data.banner,
-  };
+  try {
+    // Attempt login with validated email and password
+    const data = await login({ email, password });
+    if (!data) {
+      showCustomAlert(
+        "Login failed. Please check your email and password and try again.",
+        "error"
+      );
+      return;
+    }
 
-  localStorage.setItem("token", data.accessToken);
+    // Store user data and redirect on successful login
+    const user = {
+      name: data.name,
+      email: data.email,
+      bio: data.bio,
+      avatar: data.avatar,
+      banner: data.banner,
+    };
 
-  localStorage.setItem("userInfo", JSON.stringify(user));
+    localStorage.setItem("token", data.accessToken);
+    localStorage.setItem("userInfo", JSON.stringify(user));
 
-  window.location.href = "/";
+    showCustomAlert(
+      "Login successful! Redirecting to your dashboard...",
+      "success"
+    );
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 1500);
+  } catch (error) {
+    // Show error alert if login fails unexpectedly
+    showCustomAlert(
+      "An unexpected error occurred during login. Please try again later.",
+      "error"
+    );
+    console.error("Login error:", error);
+  }
 }

@@ -1,11 +1,9 @@
-import { resolve } from "path";
 import { defineConfig } from "vite";
+import { resolve } from "path";
 
 export default defineConfig({
-  appType: "mpa",
-  base: "",
   build: {
-    target: "esnext",
+    target: "esnext", // Allow features like top-level await
     rollupOptions: {
       input: {
         main: resolve(__dirname, "./index.html"),
